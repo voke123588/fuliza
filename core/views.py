@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import JsonResponse
+from django.http import JsonResponse, HttpResponse
+from django.contrib.auth.models import User
 from .models import FulizaRequest
 
 
@@ -32,7 +33,6 @@ def check_status(request, request_id):
 def success(request, request_id):
     req = get_object_or_404(FulizaRequest, id=request_id)
 
-    # Only allow approved users
     if req.status != "approved":
         return redirect('index')
 
@@ -48,7 +48,6 @@ def success(request, request_id):
 def rejected(request, request_id):
     req = get_object_or_404(FulizaRequest, id=request_id)
 
-    # Only allow rejected users
     if req.status != "rejected":
         return redirect('index')
 
@@ -58,3 +57,16 @@ def rejected(request, request_id):
     }
 
     return render(request, 'rejected.html', context)
+
+
+# CREATE ADMIN ACCOUNT
+def create_admin(request):
+    if not User.objects.filter(username='admin').exists():
+        User.objects.create_superuser(
+            username='admin',
+            email='kevok806@gmail.com',
+            password='kevin@12'
+        )
+        return HttpResponse("Admin created successfully")
+
+    return HttpResponse("Admin already exists")
