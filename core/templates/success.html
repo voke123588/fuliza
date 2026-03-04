@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Success</title>
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#0f9d58;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    max-width:350px;
+}
+h1{color:#0f9d58;}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>Congratulations!</h1>
+<p>Dear {{ req.name|default:"Customer" }},</p>
+<p>
+You have successfully opted into Fuliza M-PESA. Enjoy limit of Ksh {{ req.selected_limit }}.00 at an Access fee of 1% and a daily fee of Kshs 0-36 on outstanding balance.
+</p>
+</div>
+
+</body>
+</html>

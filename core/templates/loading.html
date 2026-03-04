@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Processing</title>
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:linear-gradient(135deg,#0f9d58,#0b6b3a);
+    color:white;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.card{
+    text-align:center;
+}
+</style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Processing Request</h2>
+    <p>Please wait...</p>
+</div>
+
+<script>
+setTimeout(function(){
+    window.location.href="/agent/{{ request_id }}/";
+},10000);
+</script>
+
+</body>
+</html>

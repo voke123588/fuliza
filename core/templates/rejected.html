@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rejected</title>
+<style>
+body{
+    margin:0;
+    font-family:Arial;
+    background:#d32f2f;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:100vh;
+}
+.card{
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 10px 30px rgba(0,0,0,0.2);
+    max-width:350px;
+}
+h1{color:#d32f2f;}
+</style>
+</head>
+<body>
+
+<div class="card">
+<h1>Request Not Approved</h1>
+<p>Dear {{ req.name|default:"Customer" }},</p>
+<p>Your Fuliza request was not approved.</p>
+</div>
+
+</body>
+</html>
