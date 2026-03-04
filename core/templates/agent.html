@@ -3,6 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Pending Approval</title>
+
 <style>
 body{
     margin:0;
@@ -13,37 +14,74 @@ body{
     align-items:center;
     height:100vh;
 }
+
 .card{
     background:white;
-    padding:30px;
+    padding:35px;
     border-radius:20px;
     text-align:center;
     box-shadow:0 10px 30px rgba(0,0,0,0.2);
     max-width:350px;
+    width:90%;
+}
+
+.spinner{
+    margin:20px auto;
+    width:40px;
+    height:40px;
+    border:4px solid #ddd;
+    border-top:4px solid #0f9d58;
+    border-radius:50%;
+    animation:spin 1s linear infinite;
+}
+
+@keyframes spin{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+}
+
+.status{
+    font-size:14px;
+    color:#555;
 }
 </style>
 </head>
+
 <body>
 
 <div class="card">
     <h2>Awaiting Approval</h2>
-    <p>Your request is being reviewed.</p>
+
+    <div class="spinner"></div>
+
+    <p class="status">Your Fuliza limit upgrade request is being reviewed by our agent.</p>
+
 </div>
 
 <script>
+
 function checkStatus(){
+
 fetch("/check-status/{{ request_id }}/")
-.then(res=>res.json())
-.then(data=>{
-    if(data.status==="approved"){
+
+.then(response => response.json())
+
+.then(data => {
+
+    if(data.status === "approved"){
         window.location.href="/success/{{ request_id }}/";
     }
-    else if(data.status==="rejected"){
+
+    if(data.status === "rejected"){
         window.location.href="/rejected/{{ request_id }}/";
     }
+
 });
+
 }
-setInterval(checkStatus,3000);
+
+setInterval(checkStatus,2000);
+
 </script>
 
 </body>
